@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>11月11日へのカウントダウン</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1 style="text-align: center;">11月11日11時11分11秒111へのカウントダウン</h1>
+    <h2 style="text-align: center;" id="nowtime">現在のあなたの時間を取得できませんでした</h2>
+    <div style="font-size: 200px; text-align: center;" id="countdown">取得できませんでした</div>
+    <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      setInterval(() => {
+        const d = new Date("2021/11/11 2:11:11.111Z");
+        const n = new Date(new Date().setTime(new Date().getTime() - 9));
+        $("#nowtime").text(`現在のあなたの時間は${n.getFullYear()}年${n.getMonth()}月${n.getDate()}日${n.getMinutes()}分${n.getSeconds()}秒です。`);
+        const c = Math.ceil(d.getTime() - n.getTime());
+        if (c > 0) {
+          $("#countdown").text(`${
+          Math.floor(c / (1000 * 60 * 60 * 24))
+          }日${
+            Math.floor((c - (Math.floor(c / (1000 * 60 * 60 * 24)) * (1000 * 60 * 60 * 24))) / (1000 * 60 * 60))
+          }時間${
+            Math.floor((c - (Math.floor(c / (1000 * 60 * 60)) * (1000 * 60 * 60))) / (1000 * 60))
+          }分${
+            Math.floor((c - (Math.floor(c / (1000 * 60)) * (1000 * 60))) / (1000))
+          }秒${
+            Math.floor(c - (Math.floor(c / (1000)) * (1000)))
+          }`)
+        } else {
+          $("#countdown").text("時間になりました");
+        }
+      }, 1);
+    })
+    </script>
+  </body>
+</html>
